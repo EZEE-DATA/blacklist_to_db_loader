@@ -13,10 +13,12 @@ def main():
     print(f'Loaded {len(blocked_ips)} blocked ips')
     blocked_domains = download_blocked_domains(loaded_vars)
     print(f'Loaded {len(blocked_domains)} blocked domains')
+    print(f'Uploading blocked ips to db...', end='')
     upload_blocked_ips(blocked_ips)
-    print(f'Blocked ips uploaded to db')
+    print(f'done!')
+    print(f'Uploading blocked domains to db...', end='')
     upload_blocked_domains(blocked_domains)
-    print(f'Blocked domains uploaded to db')
+    print(f'done!')
     print(f'Script finished successfully!')
     return 0
 
