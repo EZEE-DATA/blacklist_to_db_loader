@@ -61,16 +61,21 @@ def update_field_from_list(token_filename: str, db_name: str, collection_name: s
     return
 
 
-def upload_blocked_ips(blocked_ips_list: list[str]) -> None:
-    update_field_from_list(token_filename='tokens/mongo.token',
+def upload_blocked_ips(blocked_ips_list: list[str], db_token_filename: str) -> None:
+    if db_token_filename is None:
+        db_token_filename='tokens/mongo.token'
+    update_field_from_list(token_filename=db_token_filename,
                            db_name=DB_NAME,
                            collection_name=BL_IPS_COLLECTION_NAME,
                            field_name='ip',
                            values=blocked_ips_list)
 
 
-def upload_blocked_domains(blocked_domains_list: list[str]) -> None:
-    update_field_from_list(token_filename='tokens/mongo.token', db_name=DB_NAME,
+def upload_blocked_domains(blocked_domains_list: list[str], db_token_filename: str) -> None:
+    if db_token_filename is None:
+        db_token_filename = 'tokens/mongo.token'
+    update_field_from_list(token_filename=db_token_filename,
+                           db_name=DB_NAME,
                            collection_name=BL_DOMAINS_COLLECTION_NAME,
                            field_name='domain',
                            values=blocked_domains_list)
